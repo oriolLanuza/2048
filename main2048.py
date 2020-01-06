@@ -37,5 +37,3 @@ def resume_game():
 
 def exit_game():
     print("See you soon!")
-
-main()
