@@ -1,4 +1,5 @@
 from game2048 import Game
+import pickle
 
 def main():
     welcome()
@@ -31,9 +32,37 @@ def new_game():
     print("You created a new game!")
     game = Game()
     game.new_game()
+    game_loop(game)
+
+def game_loop(game):
+    execute_move(get_move(),game)
+
+def get_move():
+    return str(input('Enter new move (use -> w a s d): '))
+
+def execute_move(move,game):
+    if move == 'w':
+        game.move_up_algorithm()
+    elif move == 'a':
+        game.move_left_algorithm()
+    elif move == 's':
+        game.move_down_algorithm()
+    elif move == 'd':
+        game.move_right_algorithm()
+    else:
+        game.save_game()
+        print('Please, enter a correct move.')
+    game_loop(game)
 
 def resume_game():
+    saved_game = open('saved_games_2048', 'rb')
+    game = pickle.load(saved_game)
+    saved_game.close()
+    print(game)
+    game_loop(game)
     print("You resumed last game!")
 
 def exit_game():
     print("See you soon!")
+
+main()

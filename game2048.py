@@ -1,4 +1,5 @@
 import random
+import pickle
 
 class Game():
     def __init__(self):
@@ -40,7 +41,6 @@ class Game():
         self.turn += 1
 
     def move_up_algorithm(self):
-        print('move up')
         split_transposed_reversed_moved_reversed_transposed_rows_list = self.transpose_rows_list(self.reverse_row_in_rows_list(self.get_moved_right_rows(self.reverse_row_in_rows_list(self.transpose_rows_list(self.split_rows())))))
         self.try_update(split_transposed_reversed_moved_reversed_transposed_rows_list)
 
@@ -108,3 +108,8 @@ class Game():
             return False
         else:
             return True
+
+    def save_game(self):
+        saved_game = open('saved_games_2048', 'wb')
+        pickle.dump(self, saved_game)
+        saved_game.close()

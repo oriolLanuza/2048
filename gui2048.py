@@ -1,4 +1,5 @@
 import sys
+import pickle
 
 from game2048 import Game
 
@@ -50,6 +51,7 @@ class Window(QMainWindow):
         btnUp = QPushButton('Up')
         btnUp.clicked.connect(move_up)
         btnSave = QPushButton('Save')
+        btnSave.clicked.connect(save_game)
         btnDown = QPushButton('Down')
         btnDown.clicked.connect(move_down)
         btnLeft = QPushButton('Left')
@@ -95,6 +97,9 @@ def new_game():
     game.new_game()
     updateLayout()
 
+def save_game():
+    game.save_game()
+
 def move_up():
     game.move_up_algorithm()
     updateLayout()
@@ -139,8 +144,13 @@ def updateBoardLayout():
 
 
 if __name__ == '__main__':
-    game = Game()
     app = QApplication(sys.argv)
     win = Window()
+    try:
+        saved_game = open('saved_games_2048', 'rb')
+        game = pickle.load(saved_game)
+        updateLayout()
+    except:
+        game = Game()
     win.show()
     sys.exit(app.exec_())
