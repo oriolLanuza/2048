@@ -30,7 +30,6 @@ class Game():
     def new_turn(self):
         self.update_turn_data()
         print(self)
-        #self.get_move()
     
     def update_turn_data(self):
         if self.turn == 0:
@@ -39,29 +38,6 @@ class Game():
         self.set_random_number()
         self.score = sum(self.board)
         self.turn += 1
-
-    # def get_move(self):
-    #     print(self)
-    #     move = input("Use w a s d to play -> ")
-    #     if self.check_move(move):
-    #         self.execute_move(move)
-    #     else:
-    #         print("Oops, I didn't understand you. Can you select your option again?")
-    #         self.get_move()
-    #     self.new_turn()
-
-    # def check_move(self, move):
-    #     return move in ["w","a","s","d"]
-
-    # def execute_move(self, move):
-    #     if move == "w":
-    #         self.move_up_algorithm()
-    #     elif move == "s":
-    #         self.move_down_algorithm()
-    #     elif move == "a":
-    #         self.move_left_algorithm()
-    #     else:
-    #         self.move_right_algorithm()
 
     def move_up_algorithm(self):
         print('move up')
@@ -126,8 +102,6 @@ class Game():
             self.board[8:12] = moved_rows_list[2]
             self.board[12:16] = moved_rows_list[3]
             self.new_turn()
-        #else:
-            #self.get_move()
 
     def rows_changed(self,row_list_1,row_list_2):
         if row_list_1 == row_list_2:
