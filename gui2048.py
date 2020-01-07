@@ -146,11 +146,11 @@ def updateBoardLayout():
 if __name__ == '__main__':
     app = QApplication(sys.argv)
     win = Window()
+    game = Game()
     try:
-        saved_game = open('saved_games_2048', 'rb')
-        game = pickle.load(saved_game)
-        updateLayout()
+        game.resume_game()
     except:
-        game = Game()
+        pass
+    updateLayout()
     win.show()
     sys.exit(app.exec_())

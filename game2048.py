@@ -113,3 +113,11 @@ class Game():
         saved_game = open('saved_games_2048', 'wb')
         pickle.dump(self, saved_game)
         saved_game.close()
+
+    def resume_game(self):
+        saved_game = open('saved_games_2048', 'rb')
+        game = pickle.load(saved_game)
+        saved_game.close()
+        self.board = game.board
+        self.turn = game.turn
+        self.score = game.score

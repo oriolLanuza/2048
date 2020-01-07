@@ -1,0 +1,32 @@
+<!doctype html>
+<html>
+
+<head>
+<meta charset="utf-8">
+<script type="text/javascript" src="brython.js"></script>
+<script type="text/javascript" src="brython_stdlib.js"></script>
+</head>
+
+<body onload="brython(1)">
+    <button id="new_game">New Game</button>
+    <div id="board" class="zone" style="width:60%"></div>
+
+    <script type="text/python" id="new_board">
+    from browser import document
+    from browser.html import TABLE, TR, TH, TD
+    from game2048 import Game
+
+    def insert_table(event):
+        table = TABLE()
+        # table rows
+        for row in range(4):
+            table <= TR(TD(f"Cell {row}-{i}") for i in range(4))
+
+        document["board"].clear()
+        document["board"] <= table
+
+    document["new_game"].bind("click", insert_table)
+    </script>
+</body>
+
+</html>
