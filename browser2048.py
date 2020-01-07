@@ -1,6 +1,5 @@
-#!/usr/bin/env python
-# -*- coding: utf-8 -*-
-
+from browser import document
+from browser.html import TABLE, TR, TH, TD
 import random
 import pickle
 
@@ -124,3 +123,27 @@ class Game():
         self.board = game.board
         self.turn = game.turn
         self.score = game.score
+
+def new_game(event):
+    game = Game()
+    game.new_game()
+    update_board(game)
+    
+def update_board(game):
+    table = TABLE()
+    rows = [game.board[0:4],game.board[4:8],game.board[8:12],game.board[12:16]]
+    
+    for row in rows:
+        table <= TR(TD(f"{value}") for value in row)
+
+    document["board"].clear()
+    document["board"] <= table
+
+document["new_game"].bind("click", new_game)
+document["up"].bind("click", move_up)
+document["down"].bind("click", move_down)
+document["left"].bind("click", move_left)
+document["right"].bind("click", move_down)
+
+game = Game()
+update_board(game)
