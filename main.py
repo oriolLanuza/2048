@@ -2,12 +2,8 @@ from game2048 import Game
 import pickle
 
 def main():
-    welcome()
+    print("Welcome to 2048! Are you ready to play?")
     execute_command(get_command())
-
-def welcome():
-    welcome_msg = "Welcome to 2048! Are you ready to play?"
-    print(welcome_msg)
 
 def get_command():
     command = input("\t 1. New Game \n \t 2. Resume Game \n \t 3. Exit Game \n \t --->")
