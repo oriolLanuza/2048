@@ -104,10 +104,7 @@ class Game():
             self.new_turn()
 
     def rows_changed(self,row_list_1,row_list_2):
-        if row_list_1 == row_list_2:
-            return False
-        else:
-            return True
+        return not(row_list_1 == row_list_2)
 
     def save_game(self):
         saved_game = open('saved_games_2048', 'wb')

@@ -31,23 +31,27 @@ def new_game():
     game_loop(game)
 
 def game_loop(game):
-    execute_move(get_move(),game)
+    execute_option(get_move(),game)
 
 def get_move():
-    return str(input('Enter new move (use -> w a s d): '))
+    return str(input('Use w a s d to move, save or exit: '))
 
-def execute_move(move,game):
-    if move == 'w':
+def execute_option(option,game):
+    if option == 'w':
         game.move_up_algorithm()
-    elif move == 'a':
+    elif option == 'a':
         game.move_left_algorithm()
-    elif move == 's':
+    elif option == 's':
         game.move_down_algorithm()
-    elif move == 'd':
+    elif option == 'd':
         game.move_right_algorithm()
-    else:
+    elif option == 'save':
         game.save_game()
-        print('Please, enter a correct move.')
+    elif option == 'exit':
+        exit_game()
+        return
+    else:
+        print('Please, enter a correct command.')
     game_loop(game)
 
 def resume_game():
@@ -55,8 +59,8 @@ def resume_game():
     game = pickle.load(saved_game)
     saved_game.close()
     print(game)
+    print("You resumed last game saved!")
     game_loop(game)
-    print("You resumed last game!")
 
 def exit_game():
     print("See you soon!")
